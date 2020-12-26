@@ -33,7 +33,7 @@ build/
 
 
 ## Docker ###
-/docker/mariadb
+/docker/oracle
 
 ### Gradle ###
 .gradle
