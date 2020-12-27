@@ -1,0 +1,107 @@
+package com.roberto.eventos.dao;
+
+import com.roberto.eventos.model.Evento;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class EventoDao {
+
+    private final Connection connection;
+
+    public EventoDao(Connection connection) {
+        this.connection = connection;
+    }
+
+    public Integer salvar(Evento evento) {
+        String sql = "insert into tb_evento(id,nome,data) values (null, ?, ?)";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setString(1, evento.getNome());
+            preparedStatement.setDate(2, new Date(evento.getData().getTime()));
+
+            preparedStatement.executeUpdate();
+
+            try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
+                resultSet.next();
+                return resultSet.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void atualizar(Evento evento) {
+        String sql = "update tb_evento set nome = ? , data = ? where id =?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, evento.getNome());
+            preparedStatement.setDate(2, new Date(evento.getData().getTime()));
+            preparedStatement.setInt(3, evento.getId());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public Evento buscar(Integer id) {
+        String sql = "select * from tb_evento where id =?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (!resultSet.next()) {
+                    return null;
+                }
+
+                return new Evento(id, resultSet.getString("nome"),
+                        resultSet.getDate("data"));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public List<Evento> listar() {
+        String sql = "select * from tb_evento";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                List<Evento> eventos = new ArrayList<Evento>();
+
+                while (resultSet.next()) {
+                    eventos.add(new Evento(resultSet.getInt("id"),
+                            resultSet.getString("nome"),
+                            resultSet.getDate("data")));
+                }
+                return eventos;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void deletar(Integer id) {
+        String sql = "delete from tb_evento where id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+}
+//TODO: 1.10. Acessando o banco de dados com JDBC => Fazer a parte de teste unitário
