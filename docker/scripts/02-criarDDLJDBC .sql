@@ -9,14 +9,27 @@ CREATE SEQUENCE APP.eventos_seq
 
 --Criação da Tabela(DDL)
 CREATE TABLE APP.TB_Eventos
-( id_evento   number(10) NOT NULL,
+( id_evento NUMBER NOT NULL,
   nome varchar2(50) NOT NULL,
-  data date not null,
+  data_criacao date not null,
   CONSTRAINT id_pk PRIMARY KEY (id_evento)
 );
 
+--Criação da Trigger para Trabalhar com o Campo AutoIncremento
+-- Versão Oracle 11g
+CREATE OR REPLACE TRIGGER APP.tr_insere_seq_eventos 
+BEFORE INSERT ON APP.TB_Eventos 
+FOR EACH ROW
+
+BEGIN
+  SELECT APP.eventos_seq.NEXTVAL
+  INTO   :new.id_evento
+  FROM   dual;
+END;
+/
+
 --Inserção dos Dados(DML)
-INSERT INTO APP.Tb_Eventos(id_evento,nome,data) values(APP.eventos_seq.nextval,'Carlos Roberto', sysdate);
-INSERT INTO APP.Tb_Eventos(id_evento,nome,data) values(APP.eventos_seq.nextval,'Luciene Alves', sysdate);
-INSERT INTO APP.Tb_Eventos(id_evento,nome,data) values(APP.eventos_seq.nextval,'Paulo de Tarso', sysdate);
-INSERT INTO APP.Tb_Eventos(id_evento,nome,data) values(APP.eventos_seq.nextval,'Alane Costa', sysdate);
+INSERT INTO APP.Tb_Eventos(nome,data_criacao) values('Lavar a Louça', sysdate);
+INSERT INTO APP.Tb_Eventos(nome,data_criacao) values('Arrumar a Casa', sysdate);
+INSERT INTO APP.Tb_Eventos(nome,data_criacao) values('Dar banho nos meninos', sysdate);
+INSERT INTO APP.Tb_Eventos(nome,data_criacao) values('Escovar os dentes', sysdate);

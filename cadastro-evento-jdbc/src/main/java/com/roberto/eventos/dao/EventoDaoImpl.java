@@ -9,19 +9,17 @@ import java.util.List;
 
 public class EventoDaoImpl implements EventoDao {
 
-    private static final String COMANDO_INSERIR_EVENTOS = " INSERT INTO TB_EVENTOS(ID, NOME, DATA) "
-            + " VALUES (APP.EVENTOS_SEQ.nextval , ?, ?)";
+    private static final String COMANDO_INSERIR_EVENTOS = " INSERT INTO TB_EVENTOS(NOME, DATA_CRIACAO) VALUES (?, ?) ";
 
     private static final String COMANDO_ATUALIZA_EVENTO_POR_ID = "UPDATE TB_EVENTOS "
-            + " SET NOME = ?, DATA = ?  WHERE ID =? ";
+            + " SET NOME = ?, DATA_CRIACAO = ?  WHERE ID =? ";
 
-    private static final String COMANDO_LISTAR_EVENTOS_POR_ID = "SELECT ID, NOME, DATA "
+    private static final String COMANDO_LISTAR_EVENTOS_POR_ID = "SELECT ID, NOME, DATA_CRIACAO "
             + " FROM TB_TODOS WHERE ID =? ";
 
-    private static final String COMANDO_LISTAR_EVENTOS = "SELECT ID, NOME, DATA FROM TB_EVENTOS ";
+    private static final String COMANDO_LISTAR_EVENTOS = "SELECT ID, NOME, DATA_CRIACAO FROM TB_EVENTOS ";
 
     private static final String COMANDO_DELETA_EVENTO_POR_ID = "DELETE FROM TB_TODOS WHERE ID =?";
-
 
     @Override
     public boolean salvar(Evento evento) {
