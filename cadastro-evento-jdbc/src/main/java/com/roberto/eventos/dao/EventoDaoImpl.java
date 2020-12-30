@@ -12,14 +12,14 @@ public class EventoDaoImpl implements EventoDao {
     private static final String COMANDO_INSERIR_EVENTOS = " INSERT INTO TB_EVENTOS(NOME, DATA_CRIACAO) VALUES (?, ?) ";
 
     private static final String COMANDO_ATUALIZA_EVENTO_POR_ID = "UPDATE TB_EVENTOS "
-            + " SET NOME = ?, DATA_CRIACAO = ?  WHERE ID =? ";
+            + " SET NOME = ?, DATA_CRIACAO = ?  WHERE ID_EVENTO =? ";
 
-    private static final String COMANDO_LISTAR_EVENTOS_POR_ID = "SELECT ID, NOME, DATA_CRIACAO "
-            + " FROM TB_TODOS WHERE ID =? ";
+    private static final String COMANDO_LISTAR_EVENTOS_POR_ID = "SELECT ID_EVENTO, NOME, DATA_CRIACAO "
+            + " FROM TB_EVENTOS WHERE ID_EVENTO =? ";
 
-    private static final String COMANDO_LISTAR_EVENTOS = "SELECT ID, NOME, DATA_CRIACAO FROM TB_EVENTOS ";
+    private static final String COMANDO_LISTAR_EVENTOS = "SELECT ID_EVENTO, NOME, DATA_CRIACAO FROM TB_EVENTOS ";
 
-    private static final String COMANDO_DELETA_EVENTO_POR_ID = "DELETE FROM TB_TODOS WHERE ID =?";
+    private static final String COMANDO_DELETA_EVENTO_POR_ID = "DELETE FROM TB_EVENTOS WHERE ID_EVENTO =?";
 
     @Override
     public boolean salvar(Evento evento) {
@@ -28,7 +28,7 @@ public class EventoDaoImpl implements EventoDao {
              PreparedStatement pstmt = connection.prepareStatement(COMANDO_INSERIR_EVENTOS)) {
             int i = 0;
             pstmt.setString(++i, evento.getNome());
-            pstmt.setDate(++i, new Date(evento.getData().getTime()));
+            pstmt.setDate(++i, new Date(System.currentTimeMillis()));
             return pstmt.executeUpdate() > 0;
 
         } catch (SQLException e) {
@@ -40,7 +40,7 @@ public class EventoDaoImpl implements EventoDao {
     public void atualizar(Evento evento) {
         try (PreparedStatement preparedStatement = ConnectionFactory.getConnection().prepareStatement(COMANDO_ATUALIZA_EVENTO_POR_ID)) {
             preparedStatement.setString(1, evento.getNome());
-            preparedStatement.setDate(2, new Date(evento.getData().getTime()));
+            preparedStatement.setDate(2, new Date(System.currentTimeMillis()));
             preparedStatement.setInt(3, evento.getId());
 
             preparedStatement.executeUpdate();
@@ -62,8 +62,8 @@ public class EventoDaoImpl implements EventoDao {
                     return null;
                 }
 
-                return new Evento(id, resultSet.getString("nome"),
-                        resultSet.getDate("data"));
+                return new Evento(id, resultSet.getString("NOME"),
+                        resultSet.getDate("DATA_CRIACAO"));
             }
 
         } catch (SQLException e) {

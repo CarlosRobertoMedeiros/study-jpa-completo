@@ -11,6 +11,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
 
+
+// TODO:Elabora Melhor os testes
+// Até o presente momento não estou usando a Connexão da classe de Teste
 public class EventoDaoTest {
 
     private static Connection connection;
@@ -28,15 +31,28 @@ public class EventoDaoTest {
     }
 
     @Test
-    public void criarEvento(){
+    public void deveCriarEvento(){
         Evento evento = new Evento(null,"Arrumar Notebook", new Date());
         EventoDao eventoDao = new EventoDaoImpl();
         eventoDao.salvar(evento);
     }
+
     @Test
-    public void atualizaEvento(Evento evento){
+    public void deveAtualizaEventoLavarLoucaParaTreinarNaAcademia(){
+        //Pegar o ID 1
         EventoDao eventoDao = new EventoDaoImpl();
+        Evento evento =  eventoDao.buscar(1);
+        evento.setNome("Treinar na Academia");
+        evento.setData(new java.sql.Date(evento.getData().getTime()));
         eventoDao.atualizar(evento);
+    }
+
+    @Test
+    public void deveExcluirEventoArrumarACasa(){
+        //Pegar o ID 2
+        EventoDao eventoDao = new EventoDaoImpl();
+        Evento evento =  eventoDao.buscar(2);
+        eventoDao.deletar(evento.getId());
     }
 
 

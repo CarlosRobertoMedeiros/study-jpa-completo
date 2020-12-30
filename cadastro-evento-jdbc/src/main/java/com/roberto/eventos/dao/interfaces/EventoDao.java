@@ -2,8 +2,6 @@ package com.roberto.eventos.dao.interfaces;
 
 import com.roberto.eventos.model.Evento;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface EventoDao {
