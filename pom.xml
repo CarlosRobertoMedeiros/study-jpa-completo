@@ -8,7 +8,7 @@
     <artifactId>study-jpa-completo</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>cadastro-evento-jdbc</module>
+        <!-- <module>cadastro-evento-jdbc</module> -->
         <module>study-junit-test</module>
         <module>study-ecommerce</module>
     </modules>
@@ -23,6 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <lombok.version>1.18.16</lombok.version>
         <junit-version>4.12</junit-version>
         <maven-compiler-plugin-version>3.5.1</maven-compiler-plugin-version>
 

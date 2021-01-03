@@ -4,21 +4,19 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "Tb_Produto", schema = "App")
-public class Produto {
+@Table(name = "TB_Cliente" , schema = "App")
+public class Cliente {
 
     @EqualsAndHashCode.Include
     @Id
     private Integer id;
     private String nome;
-    private String descricao;
-    private BigDecimal preco;
-
 }

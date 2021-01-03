@@ -1,4 +1,4 @@
-package com.roberto.ecommerce.iniciandocomjpa;
+package com.roberto.ecommerce;
 
 import com.roberto.ecommerce.model.Produto;
 import org.junit.*;
