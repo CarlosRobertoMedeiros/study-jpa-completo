@@ -25,11 +25,12 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         Assert.assertEquals("Kindle",produtoVerificacao.getNome());
     }*/
 
+    /*
     @Test
     public void mostrarDiferencaPersistMerge(){
         Produto produtoPersist = new Produto();
 
-        produtoPersist.setId(5);
+       // produtoPersist.setId(5);
         produtoPersist.setNome("Smart Phone One Plus");
         produtoPersist.setDescricao("O Processador Mais Rápido");
         produtoPersist.setPreco(new BigDecimal(2000));
@@ -68,32 +69,30 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 
         Produto produtoVerificacaoMerge = entityManager.find(Produto.class,produtoMerge.getId());
         Assert.assertNotNull(produtoVerificacaoMerge);
-
-
-
     }
+    */
 
-
+    /*
     @Test
     public void inserirObjetoComMerge(){
         Produto produto = new Produto();
 
-        produto.setId(4);
+       // produto.setId(4);
         produto.setNome("Microfone Rode Videmic");
         produto.setDescricao("A melhor qualidade de som");
         produto.setPreco(new BigDecimal(1000));
 
         entityManager.getTransaction().begin();
-        entityManager.merge(produto);
+        Produto produtoSalvo = entityManager.merge(produto);
         //entityManager.flush(); //Força para jogar a informação para o banco de dados
 
         entityManager.getTransaction().commit();
 
         entityManager.clear();//Preciso do código para limpar a memória que foi validado, e assim pedir ao entity manager para buscar novamente na base
 
-        Produto produtoVerificacao = entityManager.find(Produto.class,produto.getId());
+        Produto produtoVerificacao = entityManager.find(Produto.class,produtoSalvo.getId());
         Assert.assertNotNull(produtoVerificacao);
-    }
+    }*/
 
 
     @Test
@@ -145,11 +144,12 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         Assert.assertNull(produtoVerificacao);
     }
 
+    /*
     @Test
     public void inserirPrimeiroObjeto(){
         Produto produto = new Produto();
 
-        produto.setId(2);
+        //produto.setId(2);
         produto.setNome("Câmera Canon");
         produto.setDescricao("A melhor definição para suas fotos");
         produto.setPreco(new BigDecimal(5000));
@@ -165,6 +165,8 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         Produto produtoVerificacao = entityManager.find(Produto.class,produto.getId());
         Assert.assertNotNull(produtoVerificacao);
     }
+
+     */
 
 
     @Test

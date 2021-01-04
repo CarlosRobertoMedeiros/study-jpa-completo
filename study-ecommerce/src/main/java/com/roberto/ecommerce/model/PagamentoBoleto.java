@@ -10,17 +10,21 @@ import javax.persistence.*;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "TB_Cliente" , schema = "App")
-public class Cliente {
+@Table(name = "TB_Pagamento_Boleto", schema = "App")
+public class PagamentoBoleto {
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Cliente" , schema = "App")
+    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Pagamento_Boleto" , schema = "App")
     private Integer id;
 
-    private String nome;
+    @Column(name = "pedido_id")
+    private Integer pedidoId;
 
     @Enumerated(EnumType.STRING)
-    private Sexo sexo;
+    private StatusPagamento status;
+
+    @Column(name = "codigo_barras")
+    private String codigoBarras;
 }

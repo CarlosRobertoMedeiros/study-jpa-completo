@@ -5,25 +5,25 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.util.Date;
 
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "Tb_Produto", schema = "App")
-public class Produto {
-
+@Table(name = "TB_Nota_Fiscal", schema = "App")
+public class NotaFiscal {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Produto" , schema = "App")
+    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Nota_Fiscal" , schema = "App")
     private Integer id;
 
-    private String nome;
+    @Column(name = "pedido_id")
+    private Integer pedidoId;
 
-    private String descricao;
+    private String xml;
 
-    private BigDecimal preco;
-
+    @Column(name = "data_emissao")
+    private Date dataEmissao;
 }

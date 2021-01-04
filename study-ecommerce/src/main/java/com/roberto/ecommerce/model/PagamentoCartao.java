@@ -11,19 +11,20 @@ import java.math.BigDecimal;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "Tb_Produto", schema = "App")
-public class Produto {
+@Table(name = "TB_Pagamento_Cartao", schema = "App")
+public class PagamentoCartao {
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Produto" , schema = "App")
+    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Pagamento_Cartao" , schema = "App")
     private Integer id;
 
-    private String nome;
+    @Column(name = "pedido_id")
+    private Integer pedidoId;
 
-    private String descricao;
+    @Enumerated(EnumType.STRING)
+    private StatusPagamento status;
 
-    private BigDecimal preco;
-
+    private String numero;
 }

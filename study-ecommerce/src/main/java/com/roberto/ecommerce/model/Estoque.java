@@ -1,29 +1,28 @@
 package com.roberto.ecommerce.model;
 
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "Tb_Produto", schema = "App")
-public class Produto {
+@Table(name = "TB_Estoque" , schema = "App")
+public class Estoque {
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Produto" , schema = "App")
+    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Estoque" , schema = "App")
     private Integer id;
 
-    private String nome;
+    @Column(name = "produto_id")
+    private Integer produtoId;
 
-    private String descricao;
-
-    private BigDecimal preco;
+    private Integer quantidade;
 
 }
