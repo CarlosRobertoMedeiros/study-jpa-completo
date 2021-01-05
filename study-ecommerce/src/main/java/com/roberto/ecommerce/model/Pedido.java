@@ -21,6 +21,13 @@ public class Pedido {
     @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Pedido" , schema = "App")
     private Integer id;
 
+//    @Column(name = "cliente_id")
+//    private Integer clienteId;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
     @Column(name = "data_pedido")
     private LocalDateTime dataPedido;
 
