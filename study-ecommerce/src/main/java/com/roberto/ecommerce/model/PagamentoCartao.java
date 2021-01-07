@@ -20,8 +20,9 @@ public class PagamentoCartao {
     @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Pagamento_Cartao" , schema = "App")
     private Integer id;
 
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
 
     @Enumerated(EnumType.STRING)
     private StatusPagamento status;

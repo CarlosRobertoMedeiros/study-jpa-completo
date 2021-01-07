@@ -20,8 +20,9 @@ public class Estoque {
     @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Estoque" , schema = "App")
     private Integer id;
 
-    @Column(name = "produto_id")
-    private Integer produtoId;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
 
     private Integer quantidade;
 
