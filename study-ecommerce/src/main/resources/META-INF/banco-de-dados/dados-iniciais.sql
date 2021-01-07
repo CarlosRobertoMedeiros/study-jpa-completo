@@ -3,3 +3,9 @@ insert into App.Tb_Produto (id,nome, preco, descricao) values (3,'Câmera GoPro 
 
 insert into App.Tb_Cliente(id,nome) values (1, 'Fernando Marinho de Souza');
 insert into App.Tb_Cliente(id,nome) values (2, 'Marcos Mariano');
+
+insert into App.Tb_Pedido (id, cliente_id, data_pedido, total, status) values (1, 1, sysdate, 100.0, 'AGUARDANDO');
+
+insert into App.Tb_ItemPedido (id, pedido_id, produto_id, preco_produto, quantidade) values (1, 1, 1, 5.0, 2);
+
+insert into App.Tb_Categoria (id, nome) values (1, 'Eletrônicos');
