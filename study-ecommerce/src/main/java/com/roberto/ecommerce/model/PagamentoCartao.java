@@ -16,8 +16,8 @@ public class PagamentoCartao {
 
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Pagamento_Cartao" , schema = "App")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_id_pgto_cartao")
+    @SequenceGenerator(name = "seq_id_pgto_cartao", sequenceName = "Seq_Id_Pagamento_Cartao" , schema = "App")
     private Integer id;
 
     @OneToOne(optional = false)

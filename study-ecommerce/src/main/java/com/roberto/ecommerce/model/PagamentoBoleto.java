@@ -15,8 +15,8 @@ public class PagamentoBoleto {
 
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Pagamento_Boleto" , schema = "App")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_id_pgto_boleto")
+    @SequenceGenerator(name = "seq_id_pgto_boleto", sequenceName = "Seq_Id_Pagamento_Boleto" , schema = "App")
     private Integer id;
 
     @Column(name = "pedido_id")

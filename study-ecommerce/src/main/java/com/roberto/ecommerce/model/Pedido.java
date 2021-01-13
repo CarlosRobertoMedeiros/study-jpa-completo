@@ -21,8 +21,8 @@ public class Pedido {
 
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Pedido", schema = "App")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_id_pedido")
+    @SequenceGenerator(name = "seq_id_pedido", sequenceName = "Seq_Id_Pedido", schema = "App")
     private Integer id;
 
     @ManyToOne(optional = false)

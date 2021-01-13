@@ -15,8 +15,8 @@ import java.util.Date;
 public class NotaFiscal {
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Nota_Fiscal" , schema = "App")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_id_nf")
+    @SequenceGenerator(name = "seq_id_nf", sequenceName = "Seq_Id_Nota_Fiscal" , schema = "App")
     private Integer id;
 
     @OneToOne(optional = false)
