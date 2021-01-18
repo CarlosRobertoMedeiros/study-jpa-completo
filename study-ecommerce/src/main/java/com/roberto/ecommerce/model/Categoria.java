@@ -17,7 +17,7 @@ public class Categoria {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_id_categoria")
-    @SequenceGenerator(name = "seq_id_categoria", sequenceName = "Seq_Id_Categoria" , schema = "App")
+    @SequenceGenerator(name = "seq_id_categoria", sequenceName = "Seq_Id_Categoria" , schema = "App" , initialValue = 10)
     private Integer id;
 
     private String nome;

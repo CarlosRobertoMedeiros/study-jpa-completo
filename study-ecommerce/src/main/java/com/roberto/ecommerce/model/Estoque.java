@@ -17,7 +17,7 @@ public class Estoque {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_id_estoque")
-    @SequenceGenerator(name = "seq_id_estoque", sequenceName = "Seq_Id_Estoque" , schema = "App")
+    @SequenceGenerator(name = "seq_id_estoque", sequenceName = "Seq_Id_Estoque" , schema = "App" , initialValue = 10)
     private Integer id;
 
     @OneToOne(optional = false)

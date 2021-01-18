@@ -17,7 +17,7 @@ public class Cliente {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_id_cliente")
-    @SequenceGenerator(name = "seq_id_cliente", sequenceName = "Seq_Id_Cliente" , schema = "App")
+    @SequenceGenerator(name = "seq_id_cliente", sequenceName = "Seq_Id_Cliente" , schema = "App" , initialValue = 10)
     private Integer id;
 
     private String nome;

@@ -17,12 +17,12 @@ import java.util.List;
 @EntityListeners({GerarNotaFiscalListener.class , GenericoListener.class})
 @Entity
 @Table(name = "TB_Pedido", schema = "App")
+@SequenceGenerator(name = "seq_id_pedido", sequenceName = "Seq_Id_Pedido", schema = "App" , initialValue = 10)
 public class Pedido {
 
-    @EqualsAndHashCode.Include
+	@EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_id_pedido")
-    @SequenceGenerator(name = "seq_id_pedido", sequenceName = "Seq_Id_Pedido", schema = "App")
     private Integer id;
 
     @ManyToOne(optional = false)
@@ -32,10 +32,10 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itemPedidos;
 
-    @Column(name = "data_criacao")
+    @Column(name = "data_criacao" , updatable = false)
     private LocalDateTime dataCriacao;
 
-    @Column(name = "data_ultima_atualizacao")
+    @Column(name = "data_ultima_atualizacao", insertable = false )
     private LocalDateTime dataUltimaAtualizacao;
 
     @Column(name = "data_conclusao")

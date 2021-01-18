@@ -10,40 +10,63 @@ import java.time.LocalDateTime;
 
 public class RelacionamentosManyToOneTest extends EntityManagerTest {
 
-    @Test
+	@Test
     public void verificarRelacionamento() {
-
         Cliente cliente = entityManager.find(Cliente.class, 1);
-        Produto produto = entityManager.find(Produto.class,1);
 
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusPedido.AGUARDANDO);
         pedido.setDataCriacao(LocalDateTime.now());
-        pedido.setCliente(cliente);
         pedido.setTotal(BigDecimal.TEN);
 
+        pedido.setCliente(cliente);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(pedido);
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Pedido pedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());
+        Assert.assertNotNull(pedidoVerificacao.getCliente());
+    }
+
+    @Test
+    public void verificarRelacionamentoItemPedido() {
+        entityManager.getTransaction().begin();
+
+        Cliente cliente = entityManager.find(Cliente.class, 1);
+        Produto produto = entityManager.find(Produto.class, 1);
+
+        Pedido pedido = new Pedido();
+        pedido.setStatus(StatusPedido.AGUARDANDO);
+        pedido.setDataCriacao(LocalDateTime.now());
+        pedido.setTotal(BigDecimal.TEN);
+        pedido.setCliente(cliente);
+
+        entityManager.persist(pedido);
+
+        // Pode ser que logo ao executar o método "persist" o JPA já faça a sincronização com a base.
+        // Mas caso isso não aconteça, o flush garante a sincronização.
+        entityManager.flush();
+
         ItemPedido itemPedido = new ItemPedido();
+//        itemPedido.setPedidoId(pedido.getId()); //IdClass
+//        itemPedido.setProdutoId(produto.getId()); //IdClass
+        itemPedido.setPedidoId(new ItemPedidoId(pedido.getId(),produto.getId()));
         itemPedido.setPrecoProduto(produto.getPreco());
         itemPedido.setQuantidade(1);
         itemPedido.setPedido(pedido);
         itemPedido.setProduto(produto);
 
-        ItemPedido itemPedido2 = new ItemPedido();
-        itemPedido2.setPrecoProduto(produto.getPreco());
-        itemPedido2.setQuantidade(10);
-        itemPedido2.setPedido(pedido);
-        itemPedido2.setProduto(produto);
-
-        entityManager.getTransaction().begin();
-
-        entityManager.persist(pedido);
         entityManager.persist(itemPedido);
-        entityManager.persist(itemPedido2);
+
         entityManager.getTransaction().commit();
 
         entityManager.clear();
 
-        ItemPedido itemPedidoVerificacao = entityManager.find(ItemPedido.class, itemPedido2.getId());
+        ItemPedido itemPedidoVerificacao = entityManager.find(
+                ItemPedido.class, new ItemPedidoId(pedido.getId(), produto.getId()));
         Assert.assertNotNull(itemPedidoVerificacao.getPedido());
         Assert.assertNotNull(itemPedidoVerificacao.getProduto());
     }

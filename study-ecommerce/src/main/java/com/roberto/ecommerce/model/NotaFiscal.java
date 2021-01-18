@@ -16,7 +16,7 @@ public class NotaFiscal {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_id_nf")
-    @SequenceGenerator(name = "seq_id_nf", sequenceName = "Seq_Id_Nota_Fiscal" , schema = "App")
+    @SequenceGenerator(name = "seq_id_nf", sequenceName = "Seq_Id_Nota_Fiscal" , schema = "App" , initialValue = 10)
     private Integer id;
 
     @OneToOne(optional = false)

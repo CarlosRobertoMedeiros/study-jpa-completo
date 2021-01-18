@@ -22,7 +22,7 @@ public class Produto {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Produto" , schema = "App")
+    @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Produto" , schema = "App" , initialValue = 10)
     private Integer id;
 
     @Column(name = "data_criacao" , updatable = false)
