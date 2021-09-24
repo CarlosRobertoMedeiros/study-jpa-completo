@@ -1,5 +1,7 @@
 package com.roberto.ecommerce.listener;
 
+import java.io.Serializable;
+
 import javax.persistence.PostLoad;
 
 public class GenericoListener {

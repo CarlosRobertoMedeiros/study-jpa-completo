@@ -6,6 +6,7 @@ public class NotaFiscalService {
 
     public void gerar(Pedido pedido){
         System.out.println("Gerando Nota Para o Pedido "+pedido.getId()+" .");
+        
 
     }
 }

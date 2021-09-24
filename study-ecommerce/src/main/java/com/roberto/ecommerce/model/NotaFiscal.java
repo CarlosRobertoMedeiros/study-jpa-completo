@@ -15,10 +15,10 @@ import java.util.Date;
 public class NotaFiscal {
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_id_nf")
-    @SequenceGenerator(name = "seq_id_nf", sequenceName = "Seq_Id_Nota_Fiscal" , schema = "App" , initialValue = 10)
+    @Column(name = "pedido_id")
     private Integer id;
 
+    //Continuar de 1:36
     @OneToOne(optional = false)
     @JoinColumn(name = "pedido_id")
 //    @JoinTable(name = "pedido_nota_fiscal",
