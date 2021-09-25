@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <!-- <module>cadastro-evento-jdbc</module> -->
-        <module>study-junit-test</module>
         <module>study-ecommerce</module>
+        <module>study-junit-test</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class ItemPedido {
 
 	@EmbeddedId
-	private ItemPedidoId pedidoId;
+	private ItemPedidoId id;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "pedido_id", insertable = false, updatable = false)

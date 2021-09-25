@@ -1,11 +1,18 @@
 package com.roberto.ecommerce.model;
 
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.*;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -13,12 +20,13 @@ import java.util.Date;
 @Entity
 @Table(name = "TB_Nota_Fiscal", schema = "App")
 public class NotaFiscal {
-    @EqualsAndHashCode.Include
+    
+	@EqualsAndHashCode.Include
     @Id
     @Column(name = "pedido_id")
     private Integer id;
 
-    //Continuar de 1:36
+    @MapsId
     @OneToOne(optional = false)
     @JoinColumn(name = "pedido_id")
 //    @JoinTable(name = "pedido_nota_fiscal",
@@ -31,3 +39,5 @@ public class NotaFiscal {
     @Column(name = "data_emissao")
     private Date dataEmissao;
 }
+
+//Continuar Revisão da 3.5
