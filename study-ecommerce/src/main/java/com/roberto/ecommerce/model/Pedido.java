@@ -26,7 +26,7 @@ public class Pedido {
     private Integer id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cliente_id") //Por não ter nome customizado
     private Cliente cliente;
 
     @OneToMany(mappedBy = "pedido")
@@ -110,3 +110,5 @@ public class Pedido {
 
 }
 
+
+//Continuar a revisão do 5.4
