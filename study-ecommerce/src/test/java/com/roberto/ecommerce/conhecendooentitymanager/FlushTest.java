@@ -16,6 +16,14 @@ public class FlushTest extends EntityManagerTest {
             Pedido pedido = entityManager.find(Pedido.class, 1);
             pedido.setStatus(StatusPedido.PAGO);
 
+            
+            /*
+			Uma consulta obriga o JPA a sincronizar o que ele tem na memória, ou seja, forçar internamente o flush
+            Pedido pedidoPago = entityManager
+            		.createQuery("select p from Pedido where p.id=1", Pedido.class)
+            		.getSingleResult();
+             */
+            
             entityManager.flush();
 
             if (pedido.getPagamentoCartao() == null) {

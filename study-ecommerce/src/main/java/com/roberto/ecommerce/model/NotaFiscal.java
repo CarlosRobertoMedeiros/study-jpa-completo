@@ -18,10 +18,10 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "TB_Nota_Fiscal", schema = "App")
+@Table(name = "TB_Nota_Fiscal" , schema = "App")
 public class NotaFiscal {
-    
-	@EqualsAndHashCode.Include
+
+    @EqualsAndHashCode.Include
     @Id
     @Column(name = "pedido_id")
     private Integer id;
@@ -39,5 +39,3 @@ public class NotaFiscal {
     @Column(name = "data_emissao")
     private Date dataEmissao;
 }
-
-//Continuar Revisão da 3.5
