@@ -28,7 +28,7 @@
         <maven-compiler-plugin-version>3.5.1</maven-compiler-plugin-version>
 
         <ojdbc8.version>19.3.0.0</ojdbc8.version>
-        <hibernate-core.version>5.4.3.Final</hibernate-core.version>
+        <hibernate-core.version>5.4.32.Final</hibernate-core.version>
 
     </properties>
 

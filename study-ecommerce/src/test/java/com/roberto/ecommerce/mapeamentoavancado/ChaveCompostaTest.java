@@ -29,23 +29,20 @@ public class ChaveCompostaTest extends EntityManagerTest{
 		pedido.setStatus(StatusPedido.AGUARDANDO);
 		pedido.setTotal(produto.getPreco());
 		
-		entityManager.persist(pedido);
-		
-		entityManager.flush();
-		
+
 		ItemPedido itemPedido = new ItemPedido();
 //		itemPedido.setPedidoId(pedido.getId());    //Aqui era usando o IdClass
 //		itemPedido.setProdutoId(produto.getId());  //Aqui era usando o IdClass
-		itemPedido.setId(new ItemPedidoId(pedido.getId(),produto.getId()));
+		itemPedido.setId(new ItemPedidoId());
 		itemPedido.setPedido(pedido);
 		itemPedido.setProduto(produto);
 		itemPedido.setPrecoProduto(produto.getPreco());
 		itemPedido.setQuantidade(1);
-		
+
+		entityManager.persist(pedido);
 		entityManager.persist(itemPedido);
-		
 		entityManager.getTransaction().commit();
-		
+
 		entityManager.clear();
 		
 		Pedido pedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());

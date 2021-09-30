@@ -47,4 +47,13 @@ public class Produto {
     @OneToOne(mappedBy = "produto")
     private Estoque estoque;
 
+    @ElementCollection
+    @CollectionTable(name = "TB_Produto_Tag", joinColumns = @JoinColumn(name = "produto_id"))
+    @Column(name = "tag")
+    private List<String> tags;
+
+    @ElementCollection
+    @CollectionTable(name = "TB_Produto_Atributo", joinColumns = @JoinColumn(name = "produto_id"))
+    private List<Atributo> atributos;
+
 }

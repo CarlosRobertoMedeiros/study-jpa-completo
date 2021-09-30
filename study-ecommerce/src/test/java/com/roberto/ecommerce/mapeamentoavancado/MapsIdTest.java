@@ -51,7 +51,7 @@ public class MapsIdTest extends EntityManagerTest {
 		pedido.setTotal(produto.getPreco());
 
 		ItemPedido itemPedido = new ItemPedido();
-		itemPedido.setId(new ItemPedidoId());
+		itemPedido.setId(new ItemPedidoId()); //Aqui vai ser a Inserção
 		itemPedido.setPedido(pedido);
 		itemPedido.setProduto(produto);
 		itemPedido.setPrecoProduto(produto.getPreco());

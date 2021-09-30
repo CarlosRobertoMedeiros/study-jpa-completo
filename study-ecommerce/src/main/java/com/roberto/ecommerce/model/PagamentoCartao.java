@@ -18,8 +18,10 @@ public class PagamentoCartao {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_id_pgto_cartao")
     @SequenceGenerator(name = "seq_id_pgto_cartao", sequenceName = "Seq_Id_Pagamento_Cartao" , schema = "App" , initialValue = 10)
+    @Column(name = "pedido_id")
     private Integer id;
 
+    @MapsId
     @OneToOne(optional = false)
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;

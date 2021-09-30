@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class RelacionamentosOneyToManyTest extends EntityManagerTest {
+public class RelacionamentosOnyToManyTest extends EntityManagerTest {
 
     @Test
     public void verificarRelacionamento() {
@@ -56,26 +56,19 @@ public class RelacionamentosOneyToManyTest extends EntityManagerTest {
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusPedido.AGUARDANDO);
         pedido.setDataCriacao(LocalDateTime.now());
-        pedido.setCliente(cliente);
         pedido.setTotal(BigDecimal.TEN);
+        pedido.setCliente(cliente);
 
         ItemPedido itemPedido = new ItemPedido();
+        itemPedido.setId(new ItemPedidoId());
         itemPedido.setPrecoProduto(produto.getPreco());
         itemPedido.setQuantidade(1);
         itemPedido.setPedido(pedido);
         itemPedido.setProduto(produto);
 
-        ItemPedido itemPedido2 = new ItemPedido();
-        itemPedido2.setPrecoProduto(produto.getPreco());
-        itemPedido2.setQuantidade(10);
-        itemPedido2.setPedido(pedido);
-        itemPedido2.setProduto(produto);
-
         entityManager.getTransaction().begin();
-
         entityManager.persist(pedido);
         entityManager.persist(itemPedido);
-        entityManager.persist(itemPedido2);
         entityManager.getTransaction().commit();
 
         entityManager.clear();
