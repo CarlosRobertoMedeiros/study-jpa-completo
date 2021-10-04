@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "TB_Pagamento_Cartao", schema = "App")
-public class PagamentoCartao {
+public class PagamentoCartao extends Pagamento{
 
     @EqualsAndHashCode.Include
     @Id
@@ -21,13 +21,6 @@ public class PagamentoCartao {
     @Column(name = "pedido_id")
     private Integer id;
 
-    @MapsId
-    @OneToOne(optional = false)
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
-
-    @Enumerated(EnumType.STRING)
-    private StatusPagamento status;
-
-    private String numero;
+    @Column(name = "Nu_Cartao")
+    private String numeroCartao;
 }

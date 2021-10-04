@@ -11,19 +11,13 @@ import javax.persistence.*;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "TB_Pagamento_Boleto", schema = "App")
-public class PagamentoBoleto {
+public class PagamentoBoleto extends Pagamento{
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_id_pgto_boleto")
     @SequenceGenerator(name = "seq_id_pgto_boleto", sequenceName = "Seq_Id_Pagamento_Boleto" , schema = "App" , initialValue = 10)
     private Integer id;
-
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
-
-    @Enumerated(EnumType.STRING)
-    private StatusPagamento status;
 
     @Column(name = "codigo_barras")
     private String codigoBarras;
