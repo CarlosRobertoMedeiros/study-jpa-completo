@@ -14,10 +14,16 @@ import java.util.Map;
 @SecondaryTable(name = "TB_Cliente_Detalhe",
         pkJoinColumns = @PrimaryKeyJoinColumn(name = "cliente_id"))
 @Entity
-@Table(name = "TB_Cliente" , schema = "App")
+@Table(name = "TB_Cliente" ,
+       schema = "App",
+       uniqueConstraints = {@UniqueConstraint(name = "unq_cpf", columnNames = {"cpf"})},
+       indexes = {@Index(name = "idx_nome", columnList = "cpf") }
+)
 public class Cliente extends EntidadeBaseInteger{
 
     private String nome;
+
+    private String cpf;
 
     @ElementCollection
     @CollectionTable(name = "TB_Cliente_Contato", joinColumns = @JoinColumn(name = "cliente_id"))

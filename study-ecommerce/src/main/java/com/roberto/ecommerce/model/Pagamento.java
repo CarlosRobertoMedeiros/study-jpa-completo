@@ -8,11 +8,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "TB_PAGAMENTO")
+@Table(name = "Tb_Pagamento", schema = "App")
 public abstract class Pagamento {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "SQ")
+    //@SequenceGenerator(name="SQ", sequenceName="SQ", allocationSize = 1)
     private Long id;
 
     @MapsId

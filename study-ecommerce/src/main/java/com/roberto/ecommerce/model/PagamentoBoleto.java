@@ -17,7 +17,7 @@ public class PagamentoBoleto extends Pagamento{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_id_pgto_boleto")
     @SequenceGenerator(name = "seq_id_pgto_boleto", sequenceName = "Seq_Id_Pagamento_Boleto" , schema = "App" , initialValue = 10)
-    private Integer id;
+    private Long id;
 
     @Column(name = "codigo_barras")
     private String codigoBarras;
