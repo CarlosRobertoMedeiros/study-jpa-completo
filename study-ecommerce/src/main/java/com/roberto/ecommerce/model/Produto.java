@@ -16,7 +16,10 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @EntityListeners({GenericoListener.class})
 @Entity
-@Table(name = "Tb_Produto", schema = "App")
+@Table(name = "Tb_Produto", schema = "App",
+    uniqueConstraints = {@UniqueConstraint(name = "uk_produto_name", columnNames = "nome")},
+    indexes = {@Index(name = "idx_nome", columnList = "nome")}
+)
 public class Produto {
 
     @EqualsAndHashCode.Include
@@ -25,16 +28,19 @@ public class Produto {
     @SequenceGenerator(name = "seq", sequenceName = "Seq_Id_Produto" , schema = "App" , initialValue = 10)
     private Integer id;
 
-    @Column(name = "data_criacao" , updatable = false)
+    @Column(name = "data_criacao" , updatable = false, nullable = false)
     private LocalDateTime dataCriacao;
 
     @Column(name = "data_ultima_atualizacao", insertable = false)
     private LocalDateTime dataUltimaAtualizacao;
 
+    @Column(length = 100, nullable = false) //padrão sem color column nome varchar(255)
     private String nome;
 
+    @Column(columnDefinition = "varchar2(275)")
     private String descricao;
 
+    @Column(precision = 19, scale = 2) //Ou seja preço decimal(19,2)
     private BigDecimal preco;
 
     @ManyToMany
@@ -49,7 +55,7 @@ public class Produto {
 
     @ElementCollection
     @CollectionTable(name = "TB_Produto_Tag", joinColumns = @JoinColumn(name = "produto_id"))
-    @Column(name = "tag")
+    @Column(name = "tag",length = 50, nullable = false)
     private List<String> tags;
 
     @ElementCollection

@@ -19,6 +19,6 @@ public class PagamentoBoleto extends Pagamento{
     @SequenceGenerator(name = "seq_id_pgto_boleto", sequenceName = "Seq_Id_Pagamento_Boleto" , schema = "App" , initialValue = 10)
     private Long id;
 
-    @Column(name = "codigo_barras")
+    @Column(name = "codigo_barras",length = 100,nullable = false)
     private String codigoBarras;
 }

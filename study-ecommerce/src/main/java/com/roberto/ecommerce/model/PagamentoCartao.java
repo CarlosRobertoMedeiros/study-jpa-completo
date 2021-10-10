@@ -21,7 +21,7 @@ public class PagamentoCartao extends Pagamento{
     @Column(name = "pedido_id")
     private Long id;
 
-    @Column(name = "Nu_Cartao")
+    @Column(name = "Nu_Cartao",length = 50, nullable = false)
     private String numeroCartao;
 
     @Override

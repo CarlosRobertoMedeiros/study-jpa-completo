@@ -32,7 +32,7 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itemPedidos;
 
-    @Column(name = "data_criacao" , updatable = false)
+    @Column(name = "data_criacao" , updatable = false, nullable = false)
     private LocalDateTime dataCriacao;
 
     @Column(name = "data_ultima_atualizacao", insertable = false )
@@ -44,11 +44,13 @@ public class Pedido {
     @OneToOne(mappedBy = "pedido")
     private NotaFiscal notaFiscal;
 
+    @Column(precision = 19, scale = 2, nullable = false)
     private BigDecimal total;
 
     @OneToOne(mappedBy = "pedido")
     private PagamentoCartao pagamentoCartao;
 
+    @Column(length = 30, nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
@@ -62,13 +64,11 @@ public class Pedido {
 //    @PrePersist
 //    @PreUpdate
     public void calcularTotal(){
-
         if (itemPedidos!=null){
             total = itemPedidos.stream()
                     .map(item -> item.getPrecoProduto()) //Trago o preco dos produtos
                     .reduce(BigDecimal.ZERO,BigDecimal::add); //Faço a soma do fluxo
         }
-
     }
 
     @PrePersist
@@ -109,6 +109,3 @@ public class Pedido {
     }
 
 }
-
-
-//Continuar a revisão do 5.4

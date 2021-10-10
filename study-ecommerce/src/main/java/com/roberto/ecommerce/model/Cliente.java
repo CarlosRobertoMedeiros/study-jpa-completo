@@ -21,8 +21,10 @@ import java.util.Map;
 )
 public class Cliente extends EntidadeBaseInteger{
 
+    @Column(length = 100, nullable = false)
     private String nome;
 
+    @Column(length = 14, nullable = false)
     private String cpf;
 
     @ElementCollection
@@ -34,7 +36,7 @@ public class Cliente extends EntidadeBaseInteger{
     @Transient
     private String primeiroNome;
 
-    @Column(table = "TB_Cliente_Detalhe")
+    @Column(table = "TB_Cliente_Detalhe", length = 30, nullable = false)
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
 

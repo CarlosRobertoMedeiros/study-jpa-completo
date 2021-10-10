@@ -1,8 +1,8 @@
 insert into App.Tb_Produto (id,nome, preco,data_criacao,descricao) values (1,'Kindle', 499.0, sysdate-1,'Conheça o novo Kindle, agora com iluminação embutida ajustável, que permite que você leia em ambientes abertos ou fechados, a qualquer hora do dia.');
 insert into App.Tb_Produto (id,nome, preco, data_criacao,descricao) values (3,'Câmera GoPro Hero 7', 1400.0,sysdate-2, 'Desempenho 2 vezes melhor.');
 
-insert into App.Tb_Cliente(id,nome) values (1, 'Fernando Marinho de Souza');
-insert into App.Tb_Cliente(id,nome) values (2, 'Marcos Mariano');
+insert into App.Tb_Cliente(id,nome,cpf,sexo) values (1, 'Fernando Marinho de Souza','123456789','MASCULINO');
+insert into App.Tb_Cliente(id,nome,cpf,sexo) values (2, 'Marcos Mariano','987654321','MASCULINO');
 
 insert into App.Tb_Pedido (id, cliente_id, data_criacao, total, status) values (1, 1, sysdate, 998.0, 'AGUARDANDO');
 insert into App.Tb_Pedido (id, cliente_id, data_criacao, total, status) values (2, 1, sysdate, 499.0, 'AGUARDANDO');

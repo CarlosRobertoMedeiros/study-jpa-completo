@@ -11,7 +11,9 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "TB_Categoria" , schema = "App")
+@Table(name = "TB_Categoria" , schema = "App",
+        uniqueConstraints = {@UniqueConstraint(name = "unq_name", columnNames = "nome")}
+)
 public class Categoria {
 
     @EqualsAndHashCode.Include
@@ -20,6 +22,7 @@ public class Categoria {
     @SequenceGenerator(name = "seq_id_categoria", sequenceName = "Seq_Id_Categoria" , schema = "App" , initialValue = 10)
     private Integer id;
 
+    @Column(length = 100, nullable = false)
     private String nome;
 
     @ManyToOne

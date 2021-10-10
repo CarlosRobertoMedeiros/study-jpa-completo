@@ -38,6 +38,7 @@ public class PrimeiroCrudTest extends EntityManagerTest {
 
         cliente.setId(1);
         cliente.setNome("Luciene Alves Medeiros de Lima");
+        cliente.setCpf("852147963");
 
         entityManager.getTransaction().begin();
         entityManager.merge(cliente);

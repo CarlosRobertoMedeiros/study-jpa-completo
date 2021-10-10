@@ -29,8 +29,9 @@ public class NotaFiscal {
     private Pedido pedido;
 
     @Lob
+    @Column(nullable = false)
     private byte[] xml;
 
-    @Column(name = "data_emissao")
+    @Column(name = "data_emissao",nullable = false)
     private Date dataEmissao;
 }
